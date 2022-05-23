@@ -16,7 +16,7 @@ class Form extends Component{
             [e.target.name]: e.target.value,
             [eRequired]: false,
         });
-    }
+    };
 
     // check if prompt is filled
     isFormValid = () => {
@@ -35,14 +35,23 @@ class Form extends Component{
         }
         
         const newPrompt = {
-            prompt: this.state.prompt
+            "prompt": "create a fantasy" + JSON.stringify(this.state.prompt) + "character",
+            "max_tokens": 256,
+            "temperature": 0.8,
+            "top_p": 1,
+            "n": 1,
         }
 
-        if (this.state.isFormValid()) {
+        if (this.isFormValid()) {
             axios
-            .get(`${process.env.REACT_APP_API_URL}`, newPrompt)
+            .post('https://api.openai.com/v1/engines/text-curie-001/completions', newPrompt, {
+                headers: {
+                   Authorization: 'Bearer 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'
+                }
+            }, 
+            )
             .then((response) => {
-                console.log(response);
+                console.log(response.data.choices[0].text);
                 this.setState({
                     reply: response.data
                 })
@@ -56,14 +65,14 @@ class Form extends Component{
 
     render(){
         return (
-            <form className="form">
+            <form className="form" onSubmit={this.handleSubmit}>
                 <label htmlFor="input" className="form__label">
                     Enter Fantasy Race
                 </label>
                 <input 
                     type="text" 
                     className={`form__input ${this.state.promptRequired ? "form__input--invalid" : ""}`}
-                    name="input"
+                    name="prompt"
                     onChange={this.handleChange}
                     value={this.state.prompt} 
                 />
