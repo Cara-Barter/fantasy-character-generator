@@ -2,11 +2,13 @@ import { Component } from 'react';
 import axios from 'axios';
 import './Form.scss';
 import Button from '../Button/Button';
+import Characters from '../Characters/Characters';
 
 class Form extends Component{
     state = {
         prompt: "",
-        promptRequired: false
+        promptRequired: false,
+        reply: ""
     }
 
     // create changehandler for input
@@ -51,9 +53,9 @@ class Form extends Component{
             }, 
             )
             .then((response) => {
-                console.log(response.data.choices[0].text);
+                console.log(response.data.choices);
                 this.setState({
-                    reply: response.data
+                    reply: response.data.choices[0].text
                 })
                 .catch((error) => {
                     console.log('post request error', error)
@@ -65,6 +67,7 @@ class Form extends Component{
 
     render(){
         return (
+            <>
             <form className="form" onSubmit={this.handleSubmit}>
                 <label htmlFor="input" className="form__label">
                     Enter Fantasy Race
@@ -89,6 +92,10 @@ class Form extends Component{
                     text="Submit"
                 />
             </form>
+            <Characters 
+                input={this.state.prompt}
+                reply={this.state.reply} />
+            </>
         )
     }
 }
