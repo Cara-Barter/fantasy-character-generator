@@ -46,20 +46,20 @@ class Form extends Component{
 
         if (this.isFormValid()) {
             axios
-            .post('https://api.openai.com/v1/engines/text-curie-001/completions', newPrompt, {
+            .post(`${process.env.REACT_APP_API_URL}`, newPrompt, {
                 headers: {
-                   Authorization: 'Bearer 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'
+                   Authorization: `Bearer ${process.env.REACT_APP_API_KEY}`
                 }
             }, 
             )
             .then((response) => {
-                console.log(response.data.choices);
+                console.log(response.data.choices[0]);
                 this.setState({
                     reply: response.data.choices[0].text
                 })
-                .catch((error) => {
-                    console.log('post request error', error)
-                })
+            })
+            .catch((error) => {
+                console.log('post request error', error)
             })
         }
    
