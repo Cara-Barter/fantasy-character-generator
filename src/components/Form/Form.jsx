@@ -79,6 +79,7 @@ class Form extends Component{
             })
         }
         this.addItem();
+        e.target.reset();
     }
 
     render(){
