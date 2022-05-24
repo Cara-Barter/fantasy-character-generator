@@ -69,7 +69,6 @@ class Form extends Component{
             }, 
             )
             .then((response) => {
-                console.log(response.data.choices[0]);
                 this.setState({
                     reply: response.data.choices[0].text
                 })
@@ -79,7 +78,6 @@ class Form extends Component{
             })
         }
         this.addItem();
-        e.target.reset();
     }
 
     render(){
