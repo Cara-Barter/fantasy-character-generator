@@ -77,11 +77,9 @@ class Form extends Component{
                 console.log('post request error', error)
             })
         }
-        this.addItem();
     }
 
     render(){
-        console.log(this.state.list);
         return (
             <>
             <form className="form" onSubmit={this.handleSubmit}>
