@@ -25,17 +25,6 @@ class Form extends Component{
         });
     };
 
-    addItem = () => {
-        this.setState(state => {
-            const list = [...state.list, state.reply];
-
-            return {
-                list,
-                reply: '',
-            };
-        });
-    };
-
     // check if prompt is filled
     isFormValid = () => {
         if(!this.state.prompt) {
