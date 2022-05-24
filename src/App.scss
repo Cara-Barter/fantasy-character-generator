@@ -1,0 +1,17 @@
+@use './styles/partials/global';
+
+.App {
+    display: flex;
+    flex-direction: column;
+    padding: 2rem 3rem;
+    background-image: url(../assets/images/fantasy-g1f011b322_1920.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: 100vh;
+}
+
+.title {
+    font-size: 2rem;
+    padding: 1rem 0;
+    color: white;
+}

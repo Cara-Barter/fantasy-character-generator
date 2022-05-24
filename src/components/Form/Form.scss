@@ -2,15 +2,25 @@
 @use '../../styles/partials/mixins' as *;
 @use '../../styles/partials/global' as *;
 .form {
-
+    display: flex;
+    flex-direction: column;
     &__label {
         padding-bottom: 3px;
         font-size: .75rem;
         text-transform: uppercase;
+        color: white;
+    }
+
+    &__wrapper {
+        display: flex;
+        justify-content: space-between;
+        width: 50%
     }
 
     &__input {
-
+        padding: 0 .5rem;
+        width: 60%;
+        border-radius: 4px;
         &:focus {
             outline: none;
             border: 1px solid $color-input-focus;
@@ -49,6 +59,7 @@
     }
 
     &__btn {
+        width: 25%;
         padding: .5rem;
         border-radius: 4px;
         border: 1px solid $color-btn-outline;
